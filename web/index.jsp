@@ -395,7 +395,7 @@ Toggle navigation</span>
             <form action="" method="post">
               <table>
                 <tr>
-                  <th>Date：<input type="text" id="date"></th>
+                  <th>Name：<input type="text" id="name"></th>
                   <th><input type="submit" id="check" value="ok"></th>
                 </tr>
               </table>
@@ -635,12 +635,11 @@ Toggle navigation</span>
 <script type="text/javascript" >
   $(document).ready(function () {
       $("#ok").click(function () {
-        $.post("servlet/QueryAMDServlet?action=post",{date:$("#date").val()},function (data) {
-            var data=JSON.parse(data);
-            alert(data);
-        },"JSON")
-
-
+          $.post("servlet/QueryAMDServlet?action=post",{date:$("#date").val()},function (data) {
+              alert(123);
+              var data=JSON.parse(data);
+              alert(data);
+          },"JSON")
       })
   })
 </script>
