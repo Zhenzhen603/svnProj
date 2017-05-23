@@ -1,5 +1,7 @@
 package servlet;
 
+import org.apache.struts2.components.ElseIf;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,8 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 
 /**
  * Created by ZhenZhen on 2017/5/23.
@@ -21,8 +22,29 @@ public class QueryAMDServlet extends HttpServlet {
         PrintWriter out=response.getWriter();
         ServletContext application=getServletContext();
         String date=request.getParameter("date").substring(2);
-        Connection conn=getDatabaseConn();
-        String sql="select * from actions_original where changed_date like '09-4-5%'"; //还需要酌情修改
+        //链接数据库并查询对应日期的信息
+        int Acounts=0;int Mcounts=0;int Dcounts=0;
+        try {
+            Connection conn=getDatabaseConn();
+            String sql="select type from actions_original where changed_date like '"+date+"%'"; //还需要酌情修改
+            Statement  stmt=conn.createStatement();
+            ResultSet rs=stmt.executeQuery(sql);
+            while (rs.next()){
+                String AMDType=rs.getString(1);
+                if (AMDType.equals("A")){
+                    Acounts++;
+                }
+                else if (AMDType.equals("M")){
+                    Mcounts++;
+                }
+                else if(AMDType.equals("D")){
+                    Dcounts++;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        out.println("{"+"\"Acounts\":\""+Acounts+"\",\"Mcounts\":\""+Mcounts+"\",\"Dcounts\":\""+Dcounts+"\"}");
 
     }
 

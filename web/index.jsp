@@ -635,7 +635,10 @@ Toggle navigation</span>
 <script type="text/javascript" >
   $(document).ready(function () {
       $("#ok").click(function () {
-        $.post("servlet/QueryAMDServlet?action=post",{date:$("#date").val(),name:"shegnyuqiang"},"JSON")
+        $.post("servlet/QueryAMDServlet?action=post",{date:$("#date").val()},function (data) {
+            var data=JSON.parse(data);
+            alert(data);
+        },"JSON")
 
 
       })
