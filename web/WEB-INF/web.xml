@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <servlet>
+        <servlet-name>Servlet01</servlet-name>
+        <servlet-class>servlet.Servlet01</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegServlet</servlet-name>
+        <servlet-class>servlet.RegServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QueryAMDServlet</servlet-name>
+        <servlet-class>servlet.QueryAMDServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Servlet01</servlet-name>
+        <url-pattern>/servlet/Servlet01</url-pattern><!--这个路径和写的超链接的路径要一致   必须以/开始，表示项目的根目录-->
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegServlet</servlet-name>
+        <url-pattern>/servlet/RegServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QueryAMDServlet</servlet-name>
+        <url-pattern>/servlet/QueryAMDServlet</url-pattern>
+    </servlet-mapping>
+</web-app>
