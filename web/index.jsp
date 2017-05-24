@@ -636,16 +636,21 @@ Toggle navigation</span>
 <script type="text/javascript" >
   $(document).ready(function () {
       $("#ok").click(function () {
-          $.get("servlet/QueryAMDServlet?action=get",{date:$("#date").val()},function (data) {
 
-              
-             var dataBack=JSON.parse(data);
-              alert(dataBack);
-          },"JSON")
+          $.ajax({url:"servlet/QueryAMDServlet?nocache"+new Date().getTime(),type:"post",dataType:"json",data:{date:$("#date").val()},success:function(data){
+             // alert("successful");
+              var dataBack = eval(data);//这是一个数组!!!  不知道为什么 用jsonparse解析不了
+              var Acounts=dataBack.Acounts;
+              var Mcounts=dataBack.Mcounts;
+              var Dcounts=dataBack.Dcounts;
+              alert(Acounts+Mcounts+Dcounts);
+          },error : function() {
+              alert("failed request");
+
+          }})
       })
   })
 </script>
  </body>
-</html>
 </html>
 

@@ -26,7 +26,7 @@ public class QueryAMDServlet extends HttpServlet {
         int Acounts=0;int Mcounts=0;int Dcounts=0;
         try {
             Connection conn=getDatabaseConn();
-            String sql="select type from actions_original where changed_date like '"+date+"%'"; //还需要酌情修改
+            String sql="select type from actions_original where changed_date like '"+date+"%'";
             Statement  stmt=conn.createStatement();
             ResultSet rs=stmt.executeQuery(sql);
             while (rs.next()){
