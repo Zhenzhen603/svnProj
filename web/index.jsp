@@ -20,6 +20,7 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfect-scrollbar.min.css">
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.json-2.4.js"></script>
   <script src="${pageContext.request.contextPath}/js/hm.js"></script>
   <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/pace.min.js"></script>
@@ -635,10 +636,11 @@ Toggle navigation</span>
 <script type="text/javascript" >
   $(document).ready(function () {
       $("#ok").click(function () {
-          $.post("servlet/QueryAMDServlet?action=post",{date:$("#date").val()},function (data) {
-              alert(123);
-              var data=JSON.parse(data);
-              alert(data);
+          $.get("servlet/QueryAMDServlet?action=get",{date:$("#date").val()},function (data) {
+
+              
+             var dataBack=JSON.parse(data);
+              alert(dataBack);
           },"JSON")
       })
   })

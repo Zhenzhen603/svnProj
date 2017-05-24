@@ -41,11 +41,17 @@ public class QueryAMDServlet extends HttpServlet {
                     Dcounts++;
                 }
             }
+            rs.close();stmt.close();conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        out.println("{"+"\"Acounts\":\""+Acounts+"\",\"Mcounts\":\""+Mcounts+"\",\"Dcounts\":\""+Dcounts+"\"}");
-
+        out.println("{");
+        out.println("\"Acounts\":"+"\""+Acounts+"\",");
+        out.println("\"Mcounts\":"+"\""+Mcounts+"\",");
+        out.println("\"Dcounts\":"+"\""+Dcounts+"\"");
+        out.println("}");
+        System.out.println("date="+date);
+        System.out.println("servlet执行完成");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
