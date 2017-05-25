@@ -45,13 +45,9 @@ public class QueryAMDServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        out.println("{");
-        out.println("\"Acounts\":"+"\""+Acounts+"\",");
-        out.println("\"Mcounts\":"+"\""+Mcounts+"\",");
-        out.println("\"Dcounts\":"+"\""+Dcounts+"\"");
-        out.println("}");
+        out.println("{\"counts\":["+Acounts+","+Mcounts+","+Dcounts+"]}");
         System.out.println("date="+date);
-        System.out.println("servlet执行完成");
+        System.out.println("servlet执行完成----"+"{\"counts\":["+Acounts+","+Mcounts+","+Dcounts+"]}");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

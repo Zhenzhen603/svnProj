@@ -1,3 +1,4 @@
+<%@ taglib prefix="vertical-align" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: ZhenZhen
@@ -20,6 +21,7 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfect-scrollbar.min.css">
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/echarts.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.json-2.4.js"></script>
   <script src="${pageContext.request.contextPath}/js/hm.js"></script>
   <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
@@ -354,26 +356,21 @@ Toggle navigation</span>
         散点图</h3>
       <div class="row" id="chart-row-scatter">
 
-
-        <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align: middle;>
+        <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
         <center><h4 class="chart-title" >修改情况柱状图</h4></center>
           <center>
-          <div class="chart" id="AMDcounts">
-            <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#bubble-gradient">
-            <img class="chart-area" data-original="http://echarts.baidu.com/gallery/data/thumb/bubble-gradient.png" src="${pageContext.request.contextPath}/images/bubble-gradient.png" style="display: inline;" width="800px">
-            </a>
-          </div>
+          <div  id="AMDcounts" style="width:700px; height:450px;"> </div>
           </center>
           <center>
-          <div style="width:800px;"  >
+          <div style="width:400px;"  >
             <form action="" method="post">
               <table>
                 <tr>
-                  <th>Date：<input type="text" id="date"></th>
-                  <th><input type="submit" id="ok" value="ok" ></th>
+                  <th>Date : <input type="text" id="date" ></th>
+                  <th><input type="button" id="ok" value="ok" ></th>
                 </tr>
               </table>
-
+              <script type="text/javascript">document.getElementById('date').value=new Date().getFullYear()+'-'+(new Date().getMonth()+1)</script>
             </form>
           </div>
           </center>
@@ -397,7 +394,7 @@ Toggle navigation</span>
               <table>
                 <tr>
                   <th>Name：<input type="text" id="name"></th>
-                  <th><input type="submit" id="check" value="ok"></th>
+                  <th><input type="button" id="check" value="ok"></th>
                 </tr>
               </table>
 
@@ -634,21 +631,52 @@ Toggle navigation</span>
   </div>
 </div>
 <script type="text/javascript" >
-  $(document).ready(function () {
-      $("#ok").click(function () {
-          //发现错误原因，因为jquery还没有等待servlet执行完成  就已经进行判断用success还是error函数了。解决方法，async : false 设为同步操作,类似单线程
-          $.ajax({url:"servlet/QueryAMDServlet?nocache"+new Date().getTime(),type:"post",dataType:"json",async : false,data:{date:$("#date").val()},success:function(data){
-              var dataBack = eval(data);//这是一个数组!!!  不知道为什么 用jsonparse解析不了
-              var Acounts=dataBack.Acounts;
-              var Mcounts=dataBack.Mcounts;
-              var Dcounts=dataBack.Dcounts;
-              alert("successful:"+Acounts+Mcounts+Dcounts);
-          },error : function(XMLHttpRequest,textStatus,errorThrown) {
-              alert("failed request:"+XMLHttpRequest.readyState+"----"+XMLHttpRequest.status+"----"+textStatus+"----"+errorThrown);
 
-          }})
+
+  //绑定ok按钮的点击行为，并获取返回json
+  $(document).ready(function () {
+      clicked();//页面加载完成后自动执行一次clicked
+      $("#ok").click(function () {
+          clicked();
       })
   })
+  //按钮被点击所调用的方法
+  function  clicked() {
+      $.ajax({url:"servlet/QueryAMDServlet?nocache"+new Date().getTime(),type:"post",dataType:"json",async : false,data:{date:$("#date").val()},success:function(data){
+          draw(data);
+      },error : function(XMLHttpRequest,textStatus,errorThrown) {
+          alert("failed request:"+XMLHttpRequest.readyState+"----"+XMLHttpRequest.status+"----"+textStatus+"----"+errorThrown);
+
+      }})
+  }
+
+  //设置echarts的画板
+  function draw(data) {
+      var myChart = echarts.init(document.getElementById('AMDcounts'));
+      //  myChart.showLoading();
+      myChart.setOption({
+          title: {
+              show: false,
+              text: '指定日期的修改量'
+          },
+          tooltip: {},
+          legend: {
+              data: ['文件个数']
+          },
+          xAxis: {
+              data: ["A", "M", "D"]
+          },
+          yAxis: {},
+          series: [{
+              name: '个数',
+              type: 'bar',
+              data: data.counts
+
+          }]
+      });
+
+  }
+
 </script>
  </body>
 </html>
