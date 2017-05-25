@@ -19,7 +19,7 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-ui.min.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfect-scrollbar.min.css">
-  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.json-2.4.js"></script>
   <script src="${pageContext.request.contextPath}/js/hm.js"></script>
   <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
@@ -636,16 +636,15 @@ Toggle navigation</span>
 <script type="text/javascript" >
   $(document).ready(function () {
       $("#ok").click(function () {
-
-          $.ajax({url:"servlet/QueryAMDServlet?nocache"+new Date().getTime(),type:"post",dataType:"json",data:{date:$("#date").val()},success:function(data){
-             // alert("successful");
+          //发现错误原因，因为jquery还没有等待servlet执行完成  就已经进行判断用success还是error函数了。解决方法，async : false 设为同步操作,类似单线程
+          $.ajax({url:"servlet/QueryAMDServlet?nocache"+new Date().getTime(),type:"post",dataType:"json",async : false,data:{date:$("#date").val()},success:function(data){
               var dataBack = eval(data);//这是一个数组!!!  不知道为什么 用jsonparse解析不了
               var Acounts=dataBack.Acounts;
               var Mcounts=dataBack.Mcounts;
               var Dcounts=dataBack.Dcounts;
-              alert(Acounts+Mcounts+Dcounts);
-          },error : function() {
-              alert("failed request");
+              alert("successful:"+Acounts+Mcounts+Dcounts);
+          },error : function(XMLHttpRequest,textStatus,errorThrown) {
+              alert("failed request:"+XMLHttpRequest.readyState+"----"+XMLHttpRequest.status+"----"+textStatus+"----"+errorThrown);
 
           }})
       })

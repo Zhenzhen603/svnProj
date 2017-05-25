@@ -20,7 +20,6 @@ public class QueryAMDServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
         PrintWriter out=response.getWriter();
-        ServletContext application=getServletContext();
         String date=request.getParameter("date").substring(2);
         //链接数据库并查询对应日期的信息
         int Acounts=0;int Mcounts=0;int Dcounts=0;
@@ -45,6 +44,7 @@ public class QueryAMDServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         out.println("{");
         out.println("\"Acounts\":"+"\""+Acounts+"\",");
         out.println("\"Mcounts\":"+"\""+Mcounts+"\",");
