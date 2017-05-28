@@ -4,6 +4,7 @@
 $(document).ready(function () {
     initstatusText();
     $("#updateResp").click(function () {
+        $("#statusText").val("数据更新中，请稍等...\r\n-------------\r\n");
         alert("正在更新数据，请稍等");
         updateRespClicked();
     })
@@ -11,7 +12,7 @@ $(document).ready(function () {
 function updateRespClicked(){
     $.ajax({url:"servlet/Status?nocache"+new Date().getTime(),type:"post",dataType:"json",async : false,data:{resp:$("#SVNRepository").val()},success:function(data){
         //输出数据
-        var dataBack="数据更新完成！</br>"+"SVN Repository:"+data.repository+"\\n"+"最新版本号："+data.revision+"最后提交日期：20"+data.commit_date+"最后提交者："+data.username+"数据更新时间:"+new Date().toLocaleDateString();
+        var dataBack="数据更新完成！\r\n"+"SVN Repository: "+data.repository+"\r\n"+"最新版本号："+data.revision+"\r\n"+"最后提交日期：20"+data.commit_date+"\r\n"+"最后提交者："+data.username+"\r\n"+"数据更新时间:"+new Date().toLocaleDateString();
         $("#statusText").val(dataBack);
         alert("数据更新完成！");
     },error : function(XMLHttpRequest,textStatus,errorThrown) {

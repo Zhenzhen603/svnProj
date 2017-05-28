@@ -2,28 +2,17 @@
  * 这是修改后的新showlogs 针对Tomcat库
  * tips:ps.setString(9,entry.getKey().toString().substring(13));//此处添加文件路径，需要酌情对entry.getkey进行修改
  */
-package svn.test;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
+package test;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.DateFormat;
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.Map.Entry;
 
 import org.tmatesoft.svn.core.SVNException;
-import org.tmatesoft.svn.core.SVNLogEntry;
-import org.tmatesoft.svn.core.SVNLogEntryPath;
 import org.tmatesoft.svn.core.SVNURL;
 import org.tmatesoft.svn.core.auth.ISVNAuthenticationManager;
 import org.tmatesoft.svn.core.internal.io.dav.DAVRepositoryFactory;
 import org.tmatesoft.svn.core.io.SVNRepository;
 import org.tmatesoft.svn.core.io.SVNRepositoryFactory;
 import org.tmatesoft.svn.core.wc.SVNWCUtil;
-
-import com.mysql.jdbc.PreparedStatement;
 
 
 public class ShowLogsTest {

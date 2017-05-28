@@ -1,6 +1,5 @@
-package svn.test;
-import java.text.SimpleDateFormat;
-import  java.util.*;
+package test;
+
 /**
  * Created by Administrator on 2017/5/23.
  */

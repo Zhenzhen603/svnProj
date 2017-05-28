@@ -1,7 +1,5 @@
-/*
- * 提取所有版本中的文件列表到数据库filelogs_original表
-*/
-package svn.test;
+
+package test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,36 +11,31 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
-import org.tmatesoft.sqljet.core.internal.lang.SqlParser.result_column_return;
+
 import org.tmatesoft.svn.core.SVNDirEntry;
 import org.tmatesoft.svn.core.SVNException;
 import org.tmatesoft.svn.core.SVNNodeKind;
 import org.tmatesoft.svn.core.SVNURL;
 import org.tmatesoft.svn.core.auth.ISVNAuthenticationManager;
 import org.tmatesoft.svn.core.internal.io.dav.DAVRepositoryFactory;
-import org.tmatesoft.svn.core.internal.io.fs.FSRepositoryFactory;
-import org.tmatesoft.svn.core.internal.io.svn.SVNRepositoryFactoryImpl;
 import org.tmatesoft.svn.core.io.SVNRepository;
 import org.tmatesoft.svn.core.io.SVNRepositoryFactory;
 import org.tmatesoft.svn.core.wc.SVNWCUtil;
 
 import com.mysql.jdbc.PreparedStatement;
 
-public class FilelistTest {
+public class DisplayRepositoryTree {
 	static String path="";
 	static int id=0;
 	static long revisionStart=0;
-    static String username=null;
-    static String password=null;
-    static String svnurl=null;
 	static SVNRepository repository = null;
 	static ArrayList<Integer> revisionList=new ArrayList<Integer>();
 	static Connection conn=getDatabaseConn();//获取数据库连接对象 conn
 	static PreparedStatement ps=null;
-	   public static void filelist(String svnurl2,String username2,String password2,long revisionStart) throws SQLException {
-		username=username2;
-		password=password2;
-		svnurl=svnurl2;
+	   static String svnurl = "http://svn.apache.org/repos/asf/tomcat/trunk/";
+	   static String username = null;
+	   static String password = null;
+    public static void main(String[] args)  throws SQLException {
         setupLibrary();
 		//删除之前插入的最后一个版本号的不完整数据
 		String delsql="delete  from filelogs_original where file_in="+revisionStart;
@@ -120,21 +113,15 @@ public class FilelistTest {
     	}
 		String sql="insert into filelogs_original values (?,?,?,?,?,?,?,?)";
 		ps=(PreparedStatement) conn.prepareStatement(sql);
-		int k=start+1;
+		System.out.println("本次从版本号："+revisionStart+" 开始,这是第"+start+1+"个版本->");
     	//根据版本号遍历路径下的所有文件
     	for (int i = start; i < revisionList.size(); i++) {
     		revisionStart=revisionList.get(i);
-    		System.out.println("本次从版本号："+revisionStart+" 开始,这是第"+k+"个版本日志记录->");
-    		ps.clearBatch();
-    		long timeA=System.currentTimeMillis();
     		listEntries(revisionStart,path);
-    		ps.executeBatch();
-    		long timeB=(System.currentTimeMillis()-timeA)/1000;
-    		System.out.print("版本："+revisionStart+"完成。耗时"+timeB+"s.");
 		}
-    	ps.close();
-    	conn.close();
-  }
+    	
+
+    }
     //查询所有的版本号 并赋值到revisionList中的实现方法
 	private static void getRevisionList() throws SQLException  {
 		
@@ -189,35 +176,26 @@ public class FilelistTest {
        // FSRepositoryFactory.setup();
     }
 
-    public static void listEntries(long revision, String path2) throws SQLException {
+    public static void listEntries(long revision, String path) throws SQLException {
  
         Collection entries=null;
 		try {
-			entries = repository.getDir(path2,revision, null,(Collection) null);
+			entries = repository.getDir(path,revision, null,(Collection) null);
 		} catch (SVNException e1) {
 			e1.printStackTrace();
+			System.out.println("正在重新尝试版本："+revision);
 			try {
-	        	System.out.println("正在重新尝试版本："+revision);
-	        	try {
-	    			Thread.sleep(5000);
-	    		} catch (Exception e) {
-	    			System.out.println("线程暂停5秒错误");
-	    			e.printStackTrace();
-	    		}
-				filelist(svnurl, username, password, revision);
-			} catch (SQLException e) {
-				System.out.println("SQL错误");
+				Thread.sleep(5000);
+			} catch (Exception e) {
+				System.out.println("线程暂停5秒错误");
 				e.printStackTrace();
 			}
 			System.exit(1);
 		}
 		Iterator iterator = entries.iterator();
-		
+		ps.clearBatch();
 		  while (iterator.hasNext()) {
 	            SVNDirEntry entry = (SVNDirEntry) iterator.next();
-	            if (entry.getKind() == SVNNodeKind.DIR) {
-	                listEntries(revision,(path.equals("")) ? entry.getName(): path + "/" + entry.getName());
-	            }
 	            id++;
 	            ps.setInt(1, id);
 				ps.setString(2,entry.getName());//文件名
@@ -231,8 +209,10 @@ public class FilelistTest {
 				ps.setLong(7, entry.getRevision());//修订版本号
 				ps.setLong(8, revision);
 				ps.addBatch();
-	            
+	            if (entry.getKind() == SVNNodeKind.DIR) {
+	                listEntries(revision,(path.equals("")) ? entry.getName(): path + "/" + entry.getName());
+	            }
 	        }
-		  
+		  ps.executeBatch();
     }
 }

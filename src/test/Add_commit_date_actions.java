@@ -3,7 +3,7 @@
  * 
  * 先提取原始的commit_date数据  sql=update actions ,content_original set actions.commit_date=content_original.commit_date where actions.file_path=content_original.file_path and actions.revision=content_original.file_addRevision;
  */
-package svn.test;
+package test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Add_commit_date_actions {
 	static Connection conn=getDatabaseConn();

@@ -1,4 +1,4 @@
-package svn.test;
+package test;
 /* todo actions_original表自动增量添加信息后，content——original表需要同时查询是否有新增的A类型的记录 并获取文件内容
  * 将文件第一次提交的时候的内容，写入数据库
  * 需依赖actions_original表，提取到content_original表中
@@ -10,7 +10,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Iterator;
 
 import org.tmatesoft.svn.core.SVNException;
 import org.tmatesoft.svn.core.SVNNodeKind;
@@ -20,7 +19,6 @@ import org.tmatesoft.svn.core.SVNURL;
 import org.tmatesoft.svn.core.auth.ISVNAuthenticationManager;
 import org.tmatesoft.svn.core.internal.io.dav.DAVRepositoryFactory;
 import org.tmatesoft.svn.core.io.SVNRepository;
-import org.tmatesoft.svn.core.io.SVNRepositoryFactory;
 import org.tmatesoft.svn.core.wc.SVNWCUtil;
 
 import com.mysql.jdbc.PreparedStatement;
