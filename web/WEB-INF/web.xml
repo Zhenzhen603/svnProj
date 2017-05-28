@@ -15,6 +15,10 @@
         <servlet-name>QueryAMDServlet</servlet-name>
         <servlet-class>servlet.QueryAMDServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Status</servlet-name>
+        <servlet-class>servlet.Status</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet01</servlet-name>
         <url-pattern>/servlet/Servlet01</url-pattern><!--这个路径和写的超链接的路径要一致   必须以/开始，表示项目的根目录-->
@@ -26,5 +30,17 @@
     <servlet-mapping>
         <servlet-name>QueryAMDServlet</servlet-name>
         <url-pattern>/servlet/QueryAMDServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Status</servlet-name>
+        <url-pattern>/servlet/Status</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>InitStatusText</servlet-name>
+        <servlet-class>servlet.InitStatusText</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InitStatusText</servlet-name>
+        <url-pattern>/servlet/InitStatusText</url-pattern>
     </servlet-mapping>
 </web-app>

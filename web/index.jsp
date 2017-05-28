@@ -201,7 +201,7 @@ Toggle navigation</span>
           <div class="chart-icon">
           </div>
           <div class="chart-name">
-            散点图</div>
+            首页</div>
         </a>
       </li>
       <li>
@@ -353,53 +353,21 @@ Toggle navigation</span>
   <div id="explore-container">
     <div class="chart-list-panel">
       <h3 class="chart-type-head" id="chart-type-scatter">
-        散点图</h3>
+        首页</h3>
       <div class="row" id="chart-row-scatter">
 
-        <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
-        <center><h4 class="chart-title" >修改情况柱状图</h4></center>
-          <center>
-          <div  id="AMDcounts" style="width:700px; height:450px;"> </div>
-          </center>
-          <center>
-          <div style="width:400px;"  >
-            <form action="" method="post">
-              <table>
-                <tr>
-                  <th>Date : <input type="text" id="date" ></th>
-                  <th><input type="button" id="ok" value="ok" ></th>
-                </tr>
-              </table>
-              <script type="text/javascript">document.getElementById('date').value=new Date().getFullYear()+'-'+(new Date().getMonth()+1)</script>
-            </form>
-          </div>
-          </center>
+
+        <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;">
+          <form id="updateData">
+            <tr>
+              <th>SVN Repository: <input type="text" id="SVNRepository" size="50" value="http://svn.apache.org/repos/asf/tomcat/trunk/"></th>
+              <th><input type="button" id="updateResp" value="更新数据" ></th>
+            </tr>
+          </form>
         </div>
-
-
-
-
-
-
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="chart">
-            <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#bubble-gradient">
-              <h4 class="chart-title">
-                方式的 气泡图</h4>
-              <img class="chart-area" data-original="http://echarts.baidu.com/gallery/data/thumb/bubble-gradient.png" src="${pageContext.request.contextPath}/images/bubble-gradient.png" style="display: inline;">
-            </a>
-          </div>
-          <div>
-            <form action="" method="post">
-              <table>
-                <tr>
-                  <th>Name：<input type="text" id="name"></th>
-                  <th><input type="button" id="check" value="ok"></th>
-                </tr>
-              </table>
-
-            </form>
-          </div>
+        <div class="col-lg-3 col-md-4 col-sm-6" style="width:1000px;">
+          Status: </br>
+          <textarea name="" id="statusText" cols="70" rows="8" style="width:552px"></textarea>
         </div>
       </div>
 
@@ -407,6 +375,25 @@ Toggle navigation</span>
       <h3 class="chart-type-head" id="chart-type-line">
         的是 折线图</h3>
       <div class="row" id="chart-row-line">
+        <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
+          <center><h4 class="chart-title" >修改情况柱状图</h4></center>
+          <center>
+            <div  id="AMDcounts" style="width:700px; height:450px;"> </div>
+          </center>
+          <center>
+            <div style="width:400px;"  >
+              <form action="" method="post">
+                <table>
+                  <tr>
+                    <th>Date : <input type="text" id="date" ></th>
+                    <th><input type="button" id="ok" value="ok" ></th>
+                  </tr>
+                </table>
+                <script type="text/javascript">document.getElementById('date').value=new Date().getFullYear()+'-'+(new Date().getMonth()+1)</script>
+              </form>
+            </div>
+          </center>
+        </div>
         <div class="col-lg-3 col-md-4 col-sm-6">
           <div class="chart">
             <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#line-polar">
@@ -630,54 +617,9 @@ Toggle navigation</span>
     </div>333
   </div>
 </div>
-<script type="text/javascript" >
+<script src="${pageContext.request.contextPath}/js/AMDjs.js"></script><!--AMD查询的js-->
+<script src="${pageContext.request.contextPath}/js/shouye.js"></script><!--首页模块的js-->
 
-
-  //绑定ok按钮的点击行为，并获取返回json
-  $(document).ready(function () {
-      clicked();//页面加载完成后自动执行一次clicked
-      $("#ok").click(function () {
-          clicked();
-      })
-  })
-  //按钮被点击所调用的方法
-  function  clicked() {
-      $.ajax({url:"servlet/QueryAMDServlet?nocache"+new Date().getTime(),type:"post",dataType:"json",async : false,data:{date:$("#date").val()},success:function(data){
-          draw(data);
-      },error : function(XMLHttpRequest,textStatus,errorThrown) {
-          alert("failed request:"+XMLHttpRequest.readyState+"----"+XMLHttpRequest.status+"----"+textStatus+"----"+errorThrown);
-
-      }})
-  }
-
-  //设置echarts的画板
-  function draw(data) {
-      var myChart = echarts.init(document.getElementById('AMDcounts'));
-      //  myChart.showLoading();
-      myChart.setOption({
-          title: {
-              show: false,
-              text: '指定日期的修改量'
-          },
-          tooltip: {},
-          legend: {
-              data: ['文件个数']
-          },
-          xAxis: {
-              data: ["A", "M", "D"]
-          },
-          yAxis: {},
-          series: [{
-              name: '个数',
-              type: 'bar',
-              data: data.counts
-
-          }]
-      });
-
-  }
-
-</script>
  </body>
 </html>
 

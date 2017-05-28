@@ -16,18 +16,20 @@ import svn.jdk8.Filelist;
 import svn.database.ShowLogs;
 
 public class GetData {
-	static String svnurl = "http://svn.apache.org/repos/asf/tomcat/trunk/";
+	//static String svnurl = "http://svn.apache.org/repos/asf/tomcat/trunk/";
 	//如果需要管理任意一个版本库，需要设置一个变量 用于指定版本库根的名字，比如asf。然后写程序实现/tomcat/trunk这一段的长度，然后在showlogs里面截取路径的时候使用。
+	static String svnurl = null;
 	static String username = null;
 	static String password = null;
 	static Connection conn=getDatabaseConn();
-	public static void main(String[] args) {
+	public static void updateData(String  resp) {
 		try {
-			getdata();
+			svnurl=resp;
+			getData();
 		} catch (Exception e) {e.printStackTrace();}
 	}
 
-	public static void getdata() throws Exception{
+	public static void getData() throws Exception{
 		
 		long cRevAct=currentRev_actionsori();
 		// actions_original
