@@ -1,5 +1,7 @@
 package test;
 
+import org.hibernate.annotations.SourceType;
+
 /**
  * Created by Administrator on 2017/5/23.
  */
@@ -11,6 +13,7 @@ public class T10 {
         String commit_date="dsfds ";
         String username="dsfds ";
         System.out.println("{\"resp\":\""+resp+"\",\"revision\":"+revision+",\"commit_date\":\""+commit_date+"\",\"username\":\""+username+"\"}");
+        System.out.println(" abc".substring(0,2));
 
     }
 }

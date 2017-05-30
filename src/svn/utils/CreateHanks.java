@@ -13,10 +13,11 @@ import com.mysql.jdbc.PreparedStatement;
 
 public class CreateHanks {
 	static int hank_id=0;//hank_id计数器
-
+	//数据库中存储的最大diff_id------max
 	public static void create(int max){
 		try {
 			hanks(max);
+			analysis(max);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -39,7 +40,7 @@ public class CreateHanks {
 		}
 		
 		Statement stmt01=conn.createStatement();
-		String sql02="insert into hanks values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql02="insert into hanks values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps=(PreparedStatement) conn.prepareStatement(sql02);
 		ps.clearBatch();
 		String sql01="select * from diff_original where diff_id>"+max;
@@ -74,7 +75,9 @@ public class CreateHanks {
 				ps.setString(10, overview);
 				ps.setString(11, affectedLine);
 				ps.setString(12, changed.substring(4));//substring(4)去掉每一个片段前面的"\r\n"换行符
-				ps.setString(13, null);//对该hank的分析结果
+				ps.setInt(13, 0);//增加的行数
+				ps.setInt(14, 0);//减少的行数
+				ps.setString(15, null);//对该hank的分析结果
 				ps.addBatch();
 			}
 			ps.executeBatch();
@@ -85,6 +88,59 @@ public class CreateHanks {
 		stmt01.close();
 		conn.close();
 	}
+	//添加file_id并分析增加和删除的行数
+	public  static  void analysis(int max) throws  SQLException{
+		Connection conn=getDatabaseConn();
+		String file_idstr="update hanks,diff set hanks.file_id=diff.file_id where hanks.diff_id=diff.diff_id and hanks.diff_id >"+max;
+		Statement stmt0A=conn.createStatement();
+		stmt0A.execute(file_idstr);
+		stmt0A.close();
+		//添加增删行数
+		int min_hankid=-1;
+		int max_hankid=-1;
+		if (max==-1){min_hankid=0;}
+		else {
+			String min_hankidstr="select hank_id from hanks where diff_id="+max;
+			Statement stmt01=conn.createStatement();
+			ResultSet rs01=stmt01.executeQuery(min_hankidstr);
+			while (rs01.next()){
+				min_hankid=rs01.getInt(1);
+			}
+			rs01.close();stmt01.close();
+		}
+		String max_hankidstr="select max(hank_id) from hanks ";
+		Statement stmt02=conn.createStatement();
+		ResultSet rs02=stmt02.executeQuery(max_hankidstr);
+		while (rs02.next()){
+			max_hankid=rs02.getInt(1);
+		}
+		rs02.close();stmt02.close();
+		for (int i=min_hankid+1;i<=max_hankid;i++){
+			String str03="select hank_id,changed from hanks where hank_id="+i;
+			Statement stmt03=conn.createStatement();
+			ResultSet rs03=stmt03.executeQuery(str03);
+			while (rs03.next()){
+				int hank_id=rs03.getInt(1);
+				String s=rs03.getString(2);
+				int addLine=0;
+				int reduceLine=0;
+				String [] ss=s.split("\r\n");
+				for(String s2:ss){
+					if (s2.length()<1){continue;}
+					if (s2.substring(0,1).equals("+")){addLine++;}
+					else if(s2.substring(0,1).equals("-")){reduceLine++;}
+				}
+				String str04="update hanks set addLine="+addLine+",reduceLine="+reduceLine+" where hank_id="+hank_id;
+				Statement stmt04=conn.createStatement();
+				stmt04.execute(str04);
+				stmt04.close();
+			}
+		}
+		conn.close();
+	}
+
+
+
 	//获取数据库连接
 	public static Connection getDatabaseConn(){
 		try {
