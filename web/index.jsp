@@ -80,101 +80,16 @@ Toggle navigation</span>
       </div>
       <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li id="nav-index">
-            <a href="http://echarts.baidu.com/index.html">
-              首页</a>
-          </li>
+
           <li id="nav-doc" class="dropdown">
             <a href="${pageContext.request.contextPath}/index.jsp#" data-toggle="dropdown" class="dropdown-toggle">
               文档<b class="caret">
-            </b>
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="http://echarts.baidu.com/tutorial.html">
-                  教程</a>
-              </li>
-              <li>
-                <a href="http://echarts.baidu.com/api.html">
-                  API</a>
-              </li>
-              <li>
-                <a href="http://echarts.baidu.com/option.html">
-                  配置项手册</a>
-              </li>
-              <li>
-                <a href="http://echarts.baidu.com/blog/index.html">
-                  博客</a>
-              </li>
-              <li>
-                <a href="http://echarts.baidu.com/changelog.html">
-                  CHANGELOG</a>
-              </li>
-            </ul>
-          </li>
-          <li id="nav-examples" class="active">
-            <a href="${pageContext.request.contextPath}/index.jsp#" data-toggle="dropdown" class="dropdown-toggle">
-              作品<b class="caret">
-            </b>
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="${pageContext.request.contextPath}/index.jsp">
-                  官方示例</a>
-              </li>
-              <li>
-                <a href="http://gallery.echartsjs.com/">
-                  GALLERY</a>
-              </li>
-            </ul>
-          </li>
+            </b></a></li>
           <li id="nav-download" class="dropdown">
             <a href="${pageContext.request.contextPath}/index.jsp#" data-toggle="dropdown" class="dropdown-toggle">
               下载<b class="caret">
             </b>
             </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="http://echarts.baidu.com/download.html">
-                  下载</a>
-              </li>
-              <li>
-                <a href="http://echarts.baidu.com/builder.html">
-                  在线构建</a>
-              </li>
-              <li>
-                <a href="http://echarts.baidu.com/download-map.html">
-                  地图下载</a>
-              </li>
-              <li>
-                <a href="http://ecomfe.github.io/echarts-map-tool/">
-                  地图构建</a>
-              </li>
-              <li>
-                <a href="http://echarts.baidu.com/download-theme.html">
-                  主题下载</a>
-              </li>
-              <li>
-                <a href="http://echarts.baidu.com/theme-builder/">
-                  主题构建</a>
-              </li>
-              <li>
-                <a href="http://echarts.baidu.com/spreadsheet.html">
-                  表格工具</a>
-              </li>
-            </ul>
-          </li>
-          <li id="nav-github">
-            <a href="https://github.com/ecomfe/echarts" target="_blank">
-              GitHub</a>
-          </li>
-          <li id="nav-2" class="0">
-            <a href="http://echarts.baidu.com/echarts2/">
-              2.0</a>
-          </li>
-          <li id="nav-homeen">
-            <a href="https://ecomfe.github.io/echarts-doc/public/en/index.html">
-              EN</a>
           </li>
         </ul>
       </div>
@@ -209,7 +124,7 @@ Toggle navigation</span>
           <div class="chart-icon">
           </div>
           <div class="chart-name">
-            折线图</div>
+            按时间查看</div>
         </a>
       </li>
       <li>
@@ -217,7 +132,7 @@ Toggle navigation</span>
           <div class="chart-icon">
           </div>
           <div class="chart-name">
-            柱状图</div>
+            按人员查看</div>
         </a>
       </li>
       <li>
@@ -225,119 +140,7 @@ Toggle navigation</span>
           <div class="chart-icon">
           </div>
           <div class="chart-name">
-            地图</div>
-        </a>
-      </li>
-      <li>
-        <a class="left-chart-nav-link" id="left-chart-nav-pie" href="${pageContext.request.contextPath}/index.jsp#chart-type-pie">
-          <div class="chart-icon">
-          </div>
-          <div class="chart-name">
-            饼图</div>
-        </a>
-      </li>
-      <li>
-        <a class="left-chart-nav-link" id="left-chart-nav-radar" href="${pageContext.request.contextPath}/index.jsp#chart-type-radar">
-          <div class="chart-icon">
-          </div>
-          <div class="chart-name">
-            雷达图</div>
-        </a>
-      </li>
-      <li>
-        <a class="left-chart-nav-link" id="left-chart-nav-candlestick" href="${pageContext.request.contextPath}/index.jsp#chart-type-candlestick">
-          <div class="chart-icon">
-          </div>
-          <div class="chart-name">
-            k线图</div>
-        </a>
-      </li>
-      <li>
-        <a class="left-chart-nav-link" id="left-chart-nav-boxplot" href="${pageContext.request.contextPath}/index.jsp#chart-type-boxplot">
-          <div class="chart-icon">
-          </div>
-          <div class="chart-name">
-            箱线图</div>
-        </a>
-      </li>
-      <li>
-        <a class="left-chart-nav-link" id="left-chart-nav-heatmap" href="${pageContext.request.contextPath}/index.jsp#chart-type-heatmap">
-          <div class="chart-icon">
-          </div>
-          <div class="chart-name">
-            热力图</div>
-        </a>
-      </li>
-      <li>
-        <a class="left-chart-nav-link" id="left-chart-nav-graph" href="${pageContext.request.contextPath}/index.jsp#chart-type-graph">
-          <div class="chart-icon">
-          </div>
-          <div class="chart-name">
-            关系图</div>
-        </a>
-      </li>
-      <li>
-        <a class="left-chart-nav-link" id="left-chart-nav-treemap" href="${pageContext.request.contextPath}/index.jsp#chart-type-treemap">
-          <div class="chart-icon">
-          </div>
-          <div class="chart-name">
-            矩形树图</div>
-        </a>
-      </li>
-      <li>
-        <a class="left-chart-nav-link" id="left-chart-nav-parallel" href="${pageContext.request.contextPath}/index.jsp#chart-type-parallel">
-          <div class="chart-icon">
-          </div>
-          <div class="chart-name">
-            平行坐标</div>
-        </a>
-      </li>
-      <li>
-        <a class="left-chart-nav-link" id="left-chart-nav-sankey" href="${pageContext.request.contextPath}/index.jsp#chart-type-sankey">
-          <div class="chart-icon">
-          </div>
-          <div class="chart-name">
-            桑基图</div>
-        </a>
-      </li>
-      <li>
-        <a class="left-chart-nav-link" id="left-chart-nav-funnel" href="${pageContext.request.contextPath}/index.jsp#chart-type-funnel">
-          <div class="chart-icon">
-          </div>
-          <div class="chart-name">
-            漏斗图</div>
-        </a>
-      </li>
-      <li>
-        <a class="left-chart-nav-link" id="left-chart-nav-gauge" href="${pageContext.request.contextPath}/index.jsp#chart-type-gauge">
-          <div class="chart-icon">
-          </div>
-          <div class="chart-name">
-            仪表盘</div>
-        </a>
-      </li>
-      <li>
-        <a class="left-chart-nav-link" id="left-chart-nav-pictorialBar" href="${pageContext.request.contextPath}/index.jsp#chart-type-pictorialBar">
-          <div class="chart-icon">
-          </div>
-          <div class="chart-name">
-            象形柱图</div>
-        </a>
-      </li>
-      <li>
-        <a class="left-chart-nav-link" id="left-chart-nav-themeRiver" href="${pageContext.request.contextPath}/index.jsp#chart-type-themeRiver">
-          <div class="chart-icon">
-          </div>
-          <div class="chart-name">
-            主题河流图</div>
-        </a>
-      </li>
-      <li>
-        <a class="left-chart-nav-link" id="left-chart-nav-calendar" href="${pageContext.request.contextPath}/index.jsp#chart-type-calendar">
-          <div class="chart-icon">
-          </div>
-          <div class="chart-name">
-            日历图</div>
+            按文件查看</div>
         </a>
       </li>
     </ul>
@@ -355,8 +158,6 @@ Toggle navigation</span>
       <h3 class="chart-type-head" id="chart-type-scatter">
         首页</h3>
       <div class="row" id="chart-row-scatter">
-
-
         <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;">
           <form id="updateData">
             <tr>
@@ -373,7 +174,7 @@ Toggle navigation</span>
 
 
       <h3 class="chart-type-head" id="chart-type-line">
-        的是 折线图</h3>
+        按时间查看</h3>
       <div class="row" id="chart-row-line">
         <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
           <center><h4 class="chart-title" >修改情况柱状图</h4></center>
@@ -405,216 +206,70 @@ Toggle navigation</span>
         </div>
       </div>
       <h3 class="chart-type-head" id="chart-type-bar">
-        柱状图</h3>
+        按人员查看</h3>
       <div class="row" id="chart-row-bar">
+        <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
+          <center><h4 class="chart-title" >修改情况柱状图</h4></center>
+          <center>
+            <div   style="width:700px; height:450px;"> </div>
+          </center>
+          <center>
+            <div style="width:400px;"  >
+              <form action="" method="post">
+                <table>
+                  <tr>
+                    <th>Date : <input type="text"  ></th>
+                    <th><input type="button"  value="ok" ></th>
+                  </tr>
+                </table>
+              </form>
+            </div>
+          </center>
+        </div>
         <div class="col-lg-3 col-md-4 col-sm-6">
           <div class="chart">
-            <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#multiple-y-axis">
+            <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#line-polar">
               <h4 class="chart-title">
-                多 Y 轴示例</h4>
-              <img class="chart-area" data-original="http://echarts.baidu.com/gallery/data/thumb/multiple-y-axis.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
+                照骗</h4>
+              <img class="chart-area"  src="${pageContext.request.contextPath}/images/president.jpg">
             </a>
           </div>
         </div>
       </div>
       <h3 class="chart-type-head" id="chart-type-map">
-        地图</h3>
+        按文件查看</h3>
       <div class="row" id="chart-row-map">
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="chart">
-            <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#map-HK">
-              <h4 class="chart-title">
-                香港18区人口密度 （2011）</h4>
-              <img class="chart-area" data-original="http://echarts.baidu.com/gallery/data/thumb/map-HK.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-            </a>
-          </div>
-        </div>
-      </div>
-      <h3 class="chart-type-head" id="chart-type-pie">
-        饼图</h3>
-      <div class="row" id="chart-row-pie">
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="chart">
-            <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#pie-roseType">
-              <h4 class="chart-title">
-                南丁格尔玫瑰图</h4>
-              <img class="chart-area" data-original="http://echarts.baidu.com/gallery/data/thumb/pie-roseType.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-            </a>
-          </div>
-        </div>
-      </div>
-      <h3 class="chart-type-head" id="chart-type-radar">
-        雷达图</h3>
-      <div class="row" id="chart-row-radar">
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="chart">
-            <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#radar2">
-              <h4 class="chart-title">
-                浏览器占比变化</h4>
-              <img class="chart-area" data-original="http://echarts.baidu.com/gallery/data/thumb/radar2.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-            </a>
-          </div>
-        </div>
-      </div>
-      <h3 class="chart-type-head" id="chart-type-candlestick">
-        k线图</h3>
-      <div class="row" id="chart-row-candlestick">
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="chart">
-            <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#candlestick-touch">
-              <h4 class="chart-title">
-                触屏上的坐标轴指示器</h4>
-              <img class="chart-area" data-original="http://echarts.baidu.com/gallery/data/thumb/candlestick-touch.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-            </a>
-          </div>
-        </div>
-      </div>
-      <h3 class="chart-type-head" id="chart-type-boxplot">
-        箱线图</h3>
-      <div class="row" id="chart-row-boxplot">
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="chart">
-            <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#boxplot-multi">
-              <h4 class="chart-title">
-                Multiple Categories</h4>
-              <img class="chart-area" data-original="http://echarts.baidu.com/gallery/data/thumb/boxplot-multi.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-            </a>
-          </div>
-        </div>
-      </div>
-      <h3 class="chart-type-head" id="chart-type-heatmap">
-        热力图</h3>
-      <div class="row" id="chart-row-heatmap">
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="chart">
-            <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#heatmap-map">
-              <h4 class="chart-title">
-                全国主要城市空气质量</h4>
-              <img class="chart-area" data-original="http://echarts.baidu.com/gallery/data/thumb/heatmap-map.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-            </a>
-          </div>
-        </div>
-      </div>
-      <h3 class="chart-type-head" id="chart-type-graph">
-        关系图</h3>
-      <div class="row" id="chart-row-graph">
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="chart">
-            <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#calendar-graph">
-              <h4 class="chart-title">
-                Calendar Graph</h4>
-              <img class="chart-area" data-original="http://echarts.baidu.com/gallery/data/thumb/calendar-graph.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-            </a>
-          </div>
-        </div>
-      </div>
-      <h3 class="chart-type-head" id="chart-type-treemap">
-        矩形树图</h3>
-      <div class="row" id="chart-row-treemap">
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="chart">
-            <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#treemap-visual">
-              <h4 class="chart-title">
-                Gradient Mapping</h4>
-              <img class="chart-area" data-original="http://echarts.baidu.com/gallery/data/thumb/treemap-visual.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-            </a>
-          </div>
-        </div>
-      </div>
-      <h3 class="chart-type-head" id="chart-type-parallel">
-        平行坐标</h3>
-      <div class="row" id="chart-row-parallel">
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="chart">
-            <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#scatter-matrix">
-              <h4 class="chart-title">
-                Scatter Matrix</h4>
-              <img class="chart-area" data-original="http://echarts.baidu.com/gallery/data/thumb/scatter-matrix.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-            </a>
-          </div>
-        </div>
-      </div>
-      <h3 class="chart-type-head" id="chart-type-sankey">
-        桑基图</h3>
-      <div class="row" id="chart-row-sankey">
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="chart">
-            <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#sankey-energy">
-              <h4 class="chart-title">
-                Sankey Diagram</h4>
-              <img class="chart-area" data-original="http://echarts.baidu.com/gallery/data/thumb/sankey-energy.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-            </a>
-          </div>
-        </div>
-      </div>
-      <h3 class="chart-type-head" id="chart-type-funnel">
-        漏斗图</h3>
-      <div class="row" id="chart-row-funnel">
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="chart">
-            <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#funnel-customize">
-              <h4 class="chart-title">
-                漏斗图</h4>
-              <img class="chart-area" data-original="http://echarts.baidu.com/gallery/data/thumb/funnel-customize.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-            </a>
-          </div>
-        </div>
-      </div>
-      <h3 class="chart-type-head" id="chart-type-gauge">
-        仪表盘</h3>
-      <div class="row" id="chart-row-gauge">
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="chart">
-            <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#gauge-car-dark">
-              <h4 class="chart-title">
-                Gauge Car Dark</h4>
-              <img class="chart-area" data-original="http://echarts.baidu.com/gallery/data/thumb/gauge-car-dark.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-            </a>
-          </div>
-        </div>
-        <h3 class="chart-type-head" id="chart-type-pictorialBar">
-          象形柱图</h3>
-        <div class="row" id="chart-row-pictorialBar">
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="chart">
-              <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#pictorialBar-hill">
-                <h4 class="chart-title">
-                  圣诞愿望清单和山峰高度</h4>
-                <img class="chart-area" data-original="http://echarts.baidu.com/gallery/data/thumb/pictorialBar-hill.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-              </a>
+        <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
+          <center><h4 class="chart-title" >修改情况柱状图</h4></center>
+          <center>
+            <div   style="width:700px; height:450px;"> </div>
+          </center>
+          <center>
+            <div style="width:400px;"  >
+              <form action="" method="post">
+                <table>
+                  <tr>
+                    <th>Date : <input type="text"  ></th>
+                    <th><input type="button"  value="ok" ></th>
+                  </tr>
+                </table>
+              </form>
             </div>
-          </div>
-          <h3 class="chart-type-head" id="chart-type-themeRiver">
-            主题河流图</h3>
-          <div class="row" id="chart-row-themeRiver">
-            <div class="col-lg-3 col-md-4 col-sm-6">
-              <div class="chart">
-                <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#themeRiver-lastfm">
-                  <h4 class="chart-title">
-                    ThemeRiver Lastfm</h4>
-                  <img class="chart-area" data-original="http://echarts.baidu.com/gallery/data/thumb/themeRiver-lastfm.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-                </a>
-              </div>
-            </div>
-          </div>
-          <h3 class="chart-type-head" id="chart-type-calendar">
-            日历图</h3>
-          <div class="row" id="chart-row-calendar">
-            <div class="col-lg-3 col-md-4 col-sm-6">
-              <div class="chart">
-                <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#calendar-lunar">
-                  <h4 class="chart-title">
-                    Calendar Lunar</h4>
-                  <img class="chart-area" data-original="http://echarts.baidu.com/gallery/data/thumb/calendar-lunar.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC">
-                </a>
-              </div>
-            </div>
+          </center>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="chart">
+            <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#line-polar">
+              <h4 class="chart-title">
+                照骗</h4>
+              <img class="chart-area"  src="${pageContext.request.contextPath}/images/president.jpg">
+            </a>
           </div>
         </div>
       </div>
-      <div style="display:none">
-        点击查看详情</div>
-    </div>333
+      </div>
+        </div>
+      </div>
   </div>
 </div>
 <script src="${pageContext.request.contextPath}/js/AMDjs.js"></script><!--AMD查询的js-->
