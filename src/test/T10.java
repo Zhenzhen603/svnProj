@@ -14,7 +14,10 @@ public class T10 {
         String username="dsfds ";
         System.out.println("{\"resp\":\""+resp+"\",\"revision\":"+revision+",\"commit_date\":\""+commit_date+"\",\"username\":\""+username+"\"}");
         System.out.println(" abc".substring(0,2));
+        String fileName="abc.vv.nn";
+        System.out.println(fileName.substring(fileName.lastIndexOf(".")+1));
 
+        System.out.println("{\"counts\":["+Acounts+","+Mcounts+","+Dcounts+"],\"typeCounts\":["+0+","+0+","+0+","+0+","+0+"]}");
     }
 }
 

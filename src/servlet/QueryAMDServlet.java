@@ -23,13 +23,16 @@ public class QueryAMDServlet extends HttpServlet {
         String date=request.getParameter("date").substring(2);
         //链接数据库并查询对应日期的信息
         int Acounts=0;int Mcounts=0;int Dcounts=0;
+        int javaCounts=0;int jspCounts=0;int htmlCounts=0;int xmlCounts=0;int other=0;
         try {
             Connection conn=getDatabaseConn();
-            String sql="select type from actions_original where changed_date like '"+date+"%'";
+            String sql="select type,file_name from actions_original where changed_date like '"+date+"%'";
             Statement  stmt=conn.createStatement();
             ResultSet rs=stmt.executeQuery(sql);
             while (rs.next()){
                 String AMDType=rs.getString(1);
+                String fileName=rs.getString(2);
+                String fileType=fileName.substring(fileName.lastIndexOf(".")+1);
                 if (AMDType.equals("A")){
                     Acounts++;
                 }
@@ -39,15 +42,21 @@ public class QueryAMDServlet extends HttpServlet {
                 else if(AMDType.equals("D")){
                     Dcounts++;
                 }
+                if(fileType.equals("java")){javaCounts++;}
+                else if(fileType.equals("jsp")){jspCounts++;}
+                else if (fileType.equals("html")){htmlCounts++;}
+                else if(fileType.equals("xml")){xmlCounts++;}
+                else{other++;}
+
             }
-            rs.close();stmt.close();conn.close();
+            rs.close();stmt.close();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        out.println("{\"counts\":["+Acounts+","+Mcounts+","+Dcounts+"]}");
-        System.out.println("date="+date);
-        System.out.println("servlet执行完成----"+"{\"counts\":["+Acounts+","+Mcounts+","+Dcounts+"]}");
+        out.println("{\"counts\":["+Acounts+","+Mcounts+","+Dcounts+"],\"typeCounts\":["+javaCounts+","+jspCounts+","+htmlCounts+","+xmlCounts+","+other+"]}");
+        System.out.println("servlet执行完成----"+"{\"counts\":["+Acounts+","+Mcounts+","+Dcounts+"]}"+"java"+javaCounts+",jsp"+jspCounts+",html"+htmlCounts);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

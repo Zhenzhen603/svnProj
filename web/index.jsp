@@ -156,7 +156,7 @@ Toggle navigation</span>
   <div id="explore-container">
     <div class="chart-list-panel">
       <h3 class="chart-type-head" id="chart-type-scatter">
-        首页</h3>
+        <br/><br/>首页</h3>
       <div class="row" id="chart-row-scatter">
         <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;">
           <form id="updateData">
@@ -174,39 +174,39 @@ Toggle navigation</span>
 
 
       <h3 class="chart-type-head" id="chart-type-line">
-        按时间查看</h3>
+        <br/><br/>按时间查看</h3>
+      <div  >
+        <form action="" method="post">
+          <table>
+            <tr>
+              <th>Date : <input type="text" id="date" ></th>
+              <th><input type="button" id="ok" value="ok" ></th>
+            </tr>
+          </table>
+          <script type="text/javascript">document.getElementById('date').value=new Date().getFullYear()+'-'+(new Date().getMonth()+1)</script>
+        </form>
+      </div>
       <div class="row" id="chart-row-line">
         <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
-          <center><h4 class="chart-title" >修改情况柱状图</h4></center>
+          <center><h4 class="chart-title" >修改文件个数</h4></center>
           <center>
             <div  id="AMDcounts" style="width:700px; height:450px;"> </div>
           </center>
           <center>
-            <div style="width:400px;"  >
-              <form action="" method="post">
-                <table>
-                  <tr>
-                    <th>Date : <input type="text" id="date" ></th>
-                    <th><input type="button" id="ok" value="ok" ></th>
-                  </tr>
-                </table>
-                <script type="text/javascript">document.getElementById('date').value=new Date().getFullYear()+'-'+(new Date().getMonth()+1)</script>
-              </form>
-            </div>
+
           </center>
         </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="chart">
-            <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#line-polar">
-              <h4 class="chart-title">
-                照骗</h4>
-              <img class="chart-area"  src="${pageContext.request.contextPath}/images/president.jpg">
-            </a>
-          </div>
+        <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
+          <center><h4 class="chart-title" >影响文件类型</h4></center>
+          <center>
+            <div  id="fileType" style="width:700px; height:450px;"> </div>
+          </center>
+          <center>
+          </center>
         </div>
       </div>
       <h3 class="chart-type-head" id="chart-type-bar">
-        按人员查看</h3>
+        <br/><br/>按人员查看</h3>
       <div class="row" id="chart-row-bar">
         <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
           <center><h4 class="chart-title" >修改情况柱状图</h4></center>
@@ -237,7 +237,7 @@ Toggle navigation</span>
         </div>
       </div>
       <h3 class="chart-type-head" id="chart-type-map">
-        按文件查看</h3>
+        <br/><br/>按文件查看</h3>
       <div class="row" id="chart-row-map">
         <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
           <center><h4 class="chart-title" >修改情况柱状图</h4></center>

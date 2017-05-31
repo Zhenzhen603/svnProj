@@ -23,25 +23,59 @@ function  clicked() {
 
 //设置echarts的画板
 function draw(data) {
-    var myChart = echarts.init(document.getElementById('AMDcounts'));
+    var myChart01 = echarts.init(document.getElementById('AMDcounts'));
     //  myChart.showLoading();
-    myChart.setOption({
+    myChart01.setOption({
         title: {
             show: false,
-            text: '指定日期的修改量'
+            text: '文件变动个数'
         },
         tooltip: {},
         legend: {
-            data: ['文件个数']
+            data:['个数']
         },
         xAxis: {
-            data: ["A", "M", "D"]
+            data: ["增加", "修改", "删除"]
         },
         yAxis: {},
         series: [{
             name: '个数',
             type: 'bar',
             data: data.counts
+
+        }]
+    });
+
+    //画第二个饼图
+    var myChart02 = echarts.init(document.getElementById('fileType'));
+    myChart02.setOption({
+        title: {
+            show: false,
+            text: '影响文件类型'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: ['java','jsp','html','xml','other']
+        },
+        series: [{
+            name: '个数',
+            type: 'pie',
+            radius : '60%',
+            data:[
+                {value:data.typeCounts[1], name:'java'},
+                {value:data.typeCounts[2], name:'jsp'},
+                {value:data.typeCounts[3], name:'html'},
+                {value:data.typeCounts[4], name:'xml'},
+                {value:data.typeCounts[5], name:'other'}
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
 
         }]
     });
