@@ -183,23 +183,31 @@ Toggle navigation</span>
               <th><input type="button" id="ok" value="ok" ></th>
             </tr>
           </table>
-          <script type="text/javascript">document.getElementById('date').value=new Date().getFullYear()+'-'+(new Date().getMonth()+1)</script>
+          <script type="text/javascript">document.getElementById('date').value=new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'</script>
         </form>
       </div>
       <div class="row" id="chart-row-line">
         <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
           <center><h4 class="chart-title" >修改文件个数</h4></center>
           <center>
-            <div  id="AMDcounts" style="width:700px; height:450px;"> </div>
+            <div  id="AMDcounts" style="width:700px; height:500px;"> </div>
           </center>
           <center>
 
           </center>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
-          <center><h4 class="chart-title" >影响文件类型</h4></center>
+        <center><h4 class="chart-title" >影响文件类型</h4></center>
+        <center>
+          <div  id="fileType" style="width:700px; height:500px;"> </div>
+        </center>
+        <center>
+        </center>
+      </div>
+        <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
+          <center><h4 class="chart-title" ><br/>代码增删量</h4></center>
           <center>
-            <div  id="fileType" style="width:700px; height:450px;"> </div>
+            <div  id="code" style="width:700px; height:500px;"> </div>
           </center>
           <center>
           </center>

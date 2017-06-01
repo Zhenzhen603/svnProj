@@ -53,6 +53,10 @@ function draw(data) {
             show: false,
             text: '影响文件类型'
         },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
         legend: {
             orient: 'vertical',
             left: 'left',
@@ -63,11 +67,11 @@ function draw(data) {
             type: 'pie',
             radius : '60%',
             data:[
-                {value:data.typeCounts[1], name:'java'},
-                {value:data.typeCounts[2], name:'jsp'},
-                {value:data.typeCounts[3], name:'html'},
-                {value:data.typeCounts[4], name:'xml'},
-                {value:data.typeCounts[5], name:'other'}
+                {value:data.typeCounts[0], name:'java'},
+                {value:data.typeCounts[1], name:'jsp'},
+                {value:data.typeCounts[2], name:'html'},
+                {value:data.typeCounts[3], name:'xml'},
+                {value:data.typeCounts[4], name:'other'}
             ],
             itemStyle: {
                 emphasis: {
@@ -78,6 +82,79 @@ function draw(data) {
             }
 
         }]
+    });
+
+    //画第三个饼图
+    var myChart03 = echarts.init(document.getElementById('code'));
+    myChart03.setOption ({
+        tooltip: {
+            trigger: 'axis'},
+        legend: {
+            data:['增加行数','删除行数'],
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                dataView: {readOnly: false},
+                magicType: {type: ['line', 'bar']},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        xAxis:  {
+            type: 'category',
+            boundaryGap: false,
+            data: data.commit
+        },
+        yAxis: {
+            type: 'value',
+        },
+        series: [
+            {
+                name:'增加行数',
+                type:'line',
+                data:data.addLine,
+                markPoint: {
+                    data: [
+                        {type: 'max', name: '最大值'},
+                        {type: 'min', name: '最小值'}
+                    ]
+                },
+                markLine: {
+                    data: [
+                        {type: 'average', name: '平均值'}
+                    ]
+                }
+            },
+            {
+                name:'删除行数',
+                type:'line',
+                data:data.reduceLine,
+                markLine: {
+                    data: [
+                        {type: 'average', name: '平均值'},
+                        [{
+                            symbol: 'none',
+                            x: '90%',
+                            yAxis: 'max'
+                        }, {
+                            symbol: 'circle',
+                            label: {
+                                normal: {
+                                    position: 'start',
+                                    formatter: '最大值'
+                                }
+                            },
+                            type: 'max',
+                            name: '最高点'
+                        }]
+                    ]
+                }
+            }
+        ]
     });
 
 }
