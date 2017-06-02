@@ -34,37 +34,51 @@ public class QueryAMDServlet extends HttpServlet {
                 date=date01;
             }}else {date=date01;}
         //链接数据库并查询对应日期的信息
-        int Acounts=0;int Mcounts=0;int Dcounts=0;
         int javaCounts=0;int jspCounts=0;int htmlCounts=0;int xmlCounts=0;int other=0;
-        System.out.println("date="+date);
         ArrayList<String> commit_dateList=new ArrayList<String>();ArrayList<Integer> addLineList=new ArrayList<Integer>();ArrayList<Integer> reduceLineList=new ArrayList<Integer>();
+        ArrayList<String> changed_dateList=new ArrayList<String>();ArrayList<Integer> AcountsList=new ArrayList<Integer>();ArrayList<Integer> McountsList=new ArrayList<Integer>();ArrayList<Integer> DcountsList=new ArrayList<Integer>();
         try {
             Connection conn=getDatabaseConn();
-            String sql="select * from actions_original where changed_date like '"+date+"%'";
+            String sql="select distinct changed_date from actions_original where changed_date like '"+date+"%'";
             Statement  stmt=conn.createStatement();
             ResultSet rs=stmt.executeQuery(sql);
             while (rs.next()){
-                String AMDType=rs.getString(6);
-                String fileName=rs.getString(7);
+                String changed_date=rs.getString(1);
+                changed_dateList.add(changed_date);
+                String sqlA="select type from actions_original where changed_date='"+changed_date+"'";
+                Statement stmtA=conn.createStatement();
+                ResultSet rsA=stmtA.executeQuery(sqlA);
+                int Acounts=0;int Mcounts=0;int Dcounts=0;
+                while(rsA.next()){
+                    String AMDType=rsA.getString(1);
+                    if (AMDType.equals("A")){
+                        Acounts++;
+                    }
+                    else if (AMDType.equals("M")){
+                        Mcounts++;
+                    }
+                    else if(AMDType.equals("D")){
+                        Dcounts++;
+                    }
+                }
+                AcountsList.add(Acounts);McountsList.add(Mcounts);DcountsList.add(Dcounts);
+                rsA.close();stmtA.close();;
+            }
+            rs.close();stmt.close();
+
+            String sqlB="select file_name from actions_original where changed_date like '"+date+"%'";
+            Statement stmtB=conn.createStatement();
+            ResultSet rsB=stmtB.executeQuery(sqlB);
+            while(rsB.next()){
+                String fileName=rsB.getString(1);
                 String fileType=fileName.substring(fileName.lastIndexOf(".")+1);
-                if (AMDType.equals("A")){
-                    Acounts++;
-                }
-                else if (AMDType.equals("M")){
-                    Mcounts++;
-                }
-                else if(AMDType.equals("D")){
-                    Dcounts++;
-                }
                 if(fileType.equals("java")){javaCounts++;}
                 else if(fileType.equals("jsp")){jspCounts++;}
                 else if (fileType.equals("html")){htmlCounts++;}
                 else if(fileType.equals("xml")){xmlCounts++;}
                 else{other++;}
-
             }
-            rs.close();stmt.close();
-
+            rsB.close();stmtB.close();
             //获取影响的代码行数  select revision.commit_date,addLine,reduceLine from hanks,revision where revision.commit_date like '17%' and revision.revision=hanks.rM;
             String sql02="select revision,commit_date from revision where commit_date like '"+date+"%' order by revision";
             Statement stmt02=conn.createStatement();
@@ -93,8 +107,8 @@ public class QueryAMDServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(commit_dateList.size()+"  "+addLineList.size()+"  "+reduceLineList.size());
-        out.println("{\"counts\":["+Acounts+","+Mcounts+","+Dcounts+"],\"typeCounts\":["+javaCounts+","+jspCounts+","+htmlCounts+","+xmlCounts+","+other+"]," +
+        out.println("{\"changed_dateList\":"+JSONArray.fromObject(changed_dateList).toString()+",\"AcountsList\":"+JSONArray.fromObject(AcountsList).toString()+
+                ",\"McountsList\":"+JSONArray.fromObject(McountsList).toString()+",\"DcountsList\":"+JSONArray.fromObject(AcountsList).toString()+",\"typeCounts\":["+javaCounts+","+jspCounts+","+htmlCounts+","+xmlCounts+","+other+"]," +
                     "\"commit\":"+JSONArray.fromObject(commit_dateList).toString() +",\"addLine\":"+JSONArray.fromObject(addLineList).toString()+
                     ",\"reduceLine\":"+JSONArray.fromObject(reduceLineList).toString()+"}");
 

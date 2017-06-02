@@ -25,24 +25,59 @@ function  clicked() {
 function draw(data) {
     var myChart01 = echarts.init(document.getElementById('AMDcounts'));
     myChart01.setOption({
-        title: {
-            show: false,
-            text: '文件变动个数'
+
+        legend: {
+            data: ['增加个数', '修改个数','删除个数']
+        },
+        toolbox: {
+            // y: 'bottom',
+            feature: {
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                magicType: {
+                    type: ['stack', 'tiled']
+                },
+                dataView: {},
+                saveAsImage: {
+                    pixelRatio: 2
+                }
+            }
+        },
+        dataZoom:{
+            show: true,
+            start: 20,
+            end: 80,
+            xAxisIndex: [0]
         },
         tooltip: {},
-        legend: {
-            data:['个数']
-        },
         xAxis: {
-            data: ["增加", "修改", "删除"]
+            data: data.changed_dateList,
+            silent: false,
+            splitLine: {
+                show: false
+            }
         },
-        yAxis: {},
-        series: [{
-            name: '个数',
-            type: 'bar',
-            data: data.counts
+        yAxis: {
 
-        }]
+        },
+        series: [{
+            name: '增加个数',
+            stack: 'one',
+            type: 'bar',
+            data: data.AcountsList
+        }, {
+            name: '修改个数',
+            stack: 'one',
+            type: 'bar',
+            data: data.McountsList,
+        },
+            {
+                name: '删除个数',
+                stack: 'one',
+                type: 'bar',
+                data: data.DcountsList
+            }]
     });
 
     //画第二个饼图

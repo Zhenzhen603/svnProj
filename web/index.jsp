@@ -180,7 +180,7 @@ Toggle navigation</span>
           <table>
             <tr>
               <th>Date : <input type="text" id="date" ></th>
-              <th><input type="button" id="ok" value="ok" ></th>
+              <th><input type="button" id="ok" value="  ok  " ></th>
             </tr>
           </table>
           <script type="text/javascript">document.getElementById('date').value=new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'</script>
@@ -205,7 +205,7 @@ Toggle navigation</span>
         </center>
       </div>
         <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
-          <center><h4 class="chart-title" ><br/>代码增删量</h4></center>
+          <center><h4 class="chart-title" ><br/>代码增删行数</h4></center>
           <center>
             <div  id="code" style="width:700px; height:500px;"> </div>
           </center>
