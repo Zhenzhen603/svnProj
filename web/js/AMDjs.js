@@ -24,7 +24,6 @@ function  clicked() {
 //设置echarts的画板
 function draw(data) {
     var myChart01 = echarts.init(document.getElementById('AMDcounts'));
-    //  myChart.showLoading();
     myChart01.setOption({
         title: {
             show: false,
@@ -104,6 +103,12 @@ function draw(data) {
                 saveAsImage: {}
             }
         },
+        dataZoom:{
+                show: true,
+                start: 20,
+                end: 80,
+                xAxisIndex: [0]
+            },
         xAxis:  {
             type: 'category',
             boundaryGap: false,
@@ -133,24 +138,15 @@ function draw(data) {
                 name:'删除行数',
                 type:'line',
                 data:data.reduceLine,
+                markPoint: {
+                    data: [
+                        {type: 'max', name: '最大值'},
+                        {type: 'min', name: '最小值'}
+                    ]
+                },
                 markLine: {
                     data: [
-                        {type: 'average', name: '平均值'},
-                        [{
-                            symbol: 'none',
-                            x: '90%',
-                            yAxis: 'max'
-                        }, {
-                            symbol: 'circle',
-                            label: {
-                                normal: {
-                                    position: 'start',
-                                    formatter: '最大值'
-                                }
-                            },
-                            type: 'max',
-                            name: '最高点'
-                        }]
+                        {type: 'average', name: '平均值'}
                     ]
                 }
             }

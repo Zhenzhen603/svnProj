@@ -25,11 +25,18 @@ public class QueryAMDServlet extends HttpServlet {
         PrintWriter out=response.getWriter();
         String date01=request.getParameter("date").substring(2);
         String date=null;
-        if (date01.substring(5).length()==1){date=date01+" ";}
-        else { date=date01;}
+        if(date01.length()>4){
+            int length=date01.substring(5).length();
+            if (length==1){
+                date=date01+" ";
+            }
+            else {
+                date=date01;
+            }}else {date=date01;}
         //链接数据库并查询对应日期的信息
         int Acounts=0;int Mcounts=0;int Dcounts=0;
         int javaCounts=0;int jspCounts=0;int htmlCounts=0;int xmlCounts=0;int other=0;
+        System.out.println("date="+date);
         ArrayList<String> commit_dateList=new ArrayList<String>();ArrayList<Integer> addLineList=new ArrayList<Integer>();ArrayList<Integer> reduceLineList=new ArrayList<Integer>();
         try {
             Connection conn=getDatabaseConn();
@@ -59,7 +66,7 @@ public class QueryAMDServlet extends HttpServlet {
             rs.close();stmt.close();
 
             //获取影响的代码行数  select revision.commit_date,addLine,reduceLine from hanks,revision where revision.commit_date like '17%' and revision.revision=hanks.rM;
-            String sql02="select revision,commit_date from revision where commit_date like '"+date+"%'";
+            String sql02="select revision,commit_date from revision where commit_date like '"+date+"%' order by revision";
             Statement stmt02=conn.createStatement();
             ResultSet rs02=stmt02.executeQuery(sql02);
             while(rs02.next()){
