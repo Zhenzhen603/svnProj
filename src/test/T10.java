@@ -44,14 +44,12 @@ public class T10 {
         commit_dateList.add("as");
         commit_dateList.add("as");
 
-        //good
-       System.        out.println("{\"counts\":["+Acounts+","+Mcounts+","+Dcounts+"],\"typeCounts\":["+0+","+0+","+0+","+0+","+0+"]," +
-               "\"commit\":"+JSONArray.fromObject(commit_dateList).toString() +",\"addLine\":"+JSONArray.fromObject(addLineList).toString()+
-               ",\"reduceLine\":"+JSONArray.fromObject(reduceLineList).toString()+"}");
+        System.out.println("{\"names\":"+ JSONArray.fromObject(commit_dateList).toString()+"}");
 
-        String str02="17-1-";
-        System.out.println(str02.lastIndexOf("-"));
-        System.out.println(str02.substring(5).length());
+
+
+
+
 
 
     }

@@ -1,19 +1,17 @@
 /**
  * Created by ZhenZhen on 2017/5/28.
  */
-
-
-
 //绑定ok按钮的点击行为，并获取返回json
 $(document).ready(function () {
     clicked();//页面加载完成后自动执行一次clicked
+    addName();
     $("#ok").click(function () {
         clicked();
     })
 })
 //按钮被点击所调用的方法
 function  clicked() {
-    $.ajax({url:"servlet/QueryAMDServlet?nocache"+new Date().getTime(),type:"post",dataType:"json",async : false,data:{date:$("#date").val()},success:function(data){
+    $.ajax({url:"servlet/QueryAMDServlet?nocache"+new Date().getTime(),type:"post",dataType:"json",async : false,data:{userName:$("#nameSelect").val(),date:$("#date").val()},success:function(data){
         draw(data);
     },error : function(XMLHttpRequest,textStatus,errorThrown) {
         alert("failed request:"+XMLHttpRequest.readyState+"----"+XMLHttpRequest.status+"----"+textStatus+"----"+errorThrown);
@@ -50,7 +48,10 @@ function draw(data) {
             end: 80,
             xAxisIndex: [0]
         },
-        tooltip: {},
+        tooltip: {
+            show:true,
+            trigger:'axis'
+        },
         xAxis: {
             data: data.changed_dateList,
             silent: false,
@@ -189,4 +190,20 @@ function draw(data) {
     });
 
 }
+
+//为nameSelect添加值的方法
+function  addName() {
+    $.ajax({url:"servlet/UserServlet?nocache"+new Date().getTime(),type:"post",dataType:"json",async : false,data:{noUse:"0"},success:function(data){
+        for(var i=0;i<data.names.length;i=i+1){
+            $("#nameSelect").append('<option value='+data.names[i]+'>'+data.names[i]+'</option>');
+        }
+
+    },error : function(XMLHttpRequest,textStatus,errorThrown) {
+        alert("failed request:"+XMLHttpRequest.readyState+"----"+XMLHttpRequest.status+"----"+textStatus+"----"+errorThrown);
+
+    }});
+}
+
+
+
 

@@ -48,6 +48,7 @@
               dateFormat: 'yy-m-d'
           });
       });
+
   </script>
 </head>
 <body class=" pace-done">
@@ -174,18 +175,21 @@ Toggle navigation</span>
 
 
       <h3 class="chart-type-head" id="chart-type-line">
-        <br/><br/>按时间查看</h3>
-      <div  >
-        <form action="" method="post">
+        <br/><br/>代码统计</h3>
+
+      <div  style="margin-bottom: 10px;width: 460px">
+
           <table>
             <tr>
+              <th>Developer：<select id="nameSelect"><option value="All">All</option></select></th>
               <th>Date : <input type="text" id="date" ></th>
-              <th><input type="button" id="ok" value="  ok  " ></th>
+              <th><input type="button" id="ok" value="   ok   " ></th>
             </tr>
           </table>
           <script type="text/javascript">document.getElementById('date').value=new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'</script>
-        </form>
+
       </div>
+
       <div class="row" id="chart-row-line">
         <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
           <center><h4 class="chart-title" >修改文件个数</h4></center>
@@ -193,7 +197,6 @@ Toggle navigation</span>
             <div  id="AMDcounts" style="width:700px; height:500px;"> </div>
           </center>
           <center>
-
           </center>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
@@ -205,9 +208,17 @@ Toggle navigation</span>
         </center>
       </div>
         <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
-          <center><h4 class="chart-title" ><br/>代码增删行数</h4></center>
+          <center><h4 class="chart-title" ><br/><br/>代码增删行数</h4></center>
           <center>
             <div  id="code" style="width:700px; height:500px;"> </div>
+          </center>
+          <center>
+          </center>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
+          <center><h4 class="chart-title" ><br/><br/>修改类型（bug或其他）</h4></center>
+          <center>
+            <div  id="fixType" style="width:700px; height:500px;"> </div>
           </center>
           <center>
           </center>
@@ -216,6 +227,18 @@ Toggle navigation</span>
       <h3 class="chart-type-head" id="chart-type-bar">
         <br/><br/>按人员查看</h3>
       <div class="row" id="chart-row-bar">
+        <div style="margin-left: 15px;margin-bottom: 10px">
+          <form action="" method="post">
+            <table>
+              <tr>
+                <th>Developer：<select ></select></th>
+                <th>&nbsp;Date：<input type="text"  ></th>
+                <th><input type="button"  value="  ok  " id="nameOk"></th>
+              </tr>
+            </table>
+          </form>
+
+        </div>
         <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
           <center><h4 class="chart-title" >修改情况柱状图</h4></center>
           <center>
@@ -282,6 +305,7 @@ Toggle navigation</span>
 </div>
 <script src="${pageContext.request.contextPath}/js/AMDjs.js"></script><!--AMD查询的js-->
 <script src="${pageContext.request.contextPath}/js/shouye.js"></script><!--首页模块的js-->
+
 
  </body>
 </html>

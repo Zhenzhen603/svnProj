@@ -127,7 +127,6 @@ public class ShowLogs {
 			ps.setString(4, null);
 			// 获取提交时间
 			ps.setString(5, DateFormat.getInstance().format(logEntry.getDate()));
-			//System.out.println("日期: " + DateFormat.getInstance().format(logEntry.getDate()));
 			// 获取注释信息
 			ps.setString(8, logEntry.getMessage());
 			//System.out.println("注释信息: " + logEntry.getMessage());
