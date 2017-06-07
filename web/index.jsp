@@ -125,7 +125,7 @@ Toggle navigation</span>
           <div class="chart-icon">
           </div>
           <div class="chart-name">
-            按时间查看</div>
+            代码统计</div>
         </a>
       </li>
       <li>
@@ -133,7 +133,7 @@ Toggle navigation</span>
           <div class="chart-icon">
           </div>
           <div class="chart-name">
-            按人员查看</div>
+            内容查看</div>
         </a>
       </li>
       <li>
@@ -190,7 +190,7 @@ Toggle navigation</span>
 
       </div>
 
-      <div class="row" id="chart-row-line">
+      <div class="row" id="chart-row-line" style="height: 1050px;">
         <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
           <center><h4 class="chart-title" >修改文件个数</h4></center>
           <center>
@@ -225,47 +225,40 @@ Toggle navigation</span>
         </div>
       </div>
       <h3 class="chart-type-head" id="chart-type-bar">
-        <br/><br/>按人员查看</h3>
-      <div class="row" id="chart-row-bar">
-        <div style="margin-left: 15px;margin-bottom: 10px">
-          <form action="" method="post">
-            <table>
-              <tr>
-                <th>Developer：<select ></select></th>
-                <th>&nbsp;Date：<input type="text"  ></th>
-                <th><input type="button"  value="  ok  " id="nameOk"></th>
-              </tr>
-            </table>
+        <br/><br/>内容查看</h3>
+      <div class="row" id="fileDiv" style="width:1800px; float: left" >
+        <center>
+        <div class="col-lg-3 col-md-4 col-sm-6" style="width:700px;padding-left: 50px;padding-right: 50px">
+          <form id="file" style="width: 700px">
+            <tr>
+              <th>文件完整路径： <input type="text" id="filePath" size="50" value=""></th>
+              <th><input type="button" id="check" value="检查文件" ></th>
+            </tr>
           </form>
-
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6" style="width:800px;height: 500px;" vertical-align:vertical-align: middle;>
-          <center><h4 class="chart-title" >修改情况柱状图</h4></center>
+        <div class="col-lg-3 col-md-4 col-sm-6" style="width:700px;">
+          <br>Overview <br>
           <center>
-            <div   style="width:700px; height:450px;"> </div>
-          </center>
-          <center>
-            <div style="width:400px;"  >
-              <form action="" method="post">
-                <table>
-                  <tr>
-                    <th>Date : <input type="text"  ></th>
-                    <th><input type="button"  value="ok" ></th>
-                  </tr>
-                </table>
-              </form>
-            </div>
-          </center>
+          <textarea name="" id="statusFile" cols="70" rows="28" style="width:600px"></textarea></center>
         </div>
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="chart">
-            <a class="chart-link" href="${pageContext.request.contextPath}/index.jsp#line-polar">
-              <h4 class="chart-title">
-                照骗</h4>
-              <img class="chart-area"  src="${pageContext.request.contextPath}/images/president.jpg">
-            </a>
-          </div>
-        </div>
+        </div></center>
+      <div class="row" id="fileDiffDiv" style="width:900px; float: inherit;padding-left: 50px;padding-right: 50px">
+        <center>
+        <div class="col-lg-3 col-md-4 col-sm-6" style="width:700px;">
+          <form id="fileDiff">
+            <tr></tr>
+            <tr>
+              <th>rN ：<select id="rN" ></select></th>
+              <th>rM : <select  id="rM"><option value="0">0</option></select></th>
+              <th><input type="button" id="diffOk" value=" 查看diff" ></th>
+            </tr>
+          </form>
+        </div></center>
+        <center>
+        <div class="col-lg-3 col-md-4 col-sm-6" style="width:700px;">
+          <br/>Diff</br>
+          <textarea name="" id="fileDiffContent" cols="70" rows="28" style="width:600px"></textarea>
+        </div></center>
+      </div>
       </div>
       <h3 class="chart-type-head" id="chart-type-map">
         <br/><br/>按文件查看</h3>
@@ -305,6 +298,7 @@ Toggle navigation</span>
 </div>
 <script src="${pageContext.request.contextPath}/js/AMDjs.js"></script><!--AMD查询的js-->
 <script src="${pageContext.request.contextPath}/js/shouye.js"></script><!--首页模块的js-->
+<script src="${pageContext.request.contextPath}/js/FileJs.js"></script><!--file模块-->
 
 
  </body>
