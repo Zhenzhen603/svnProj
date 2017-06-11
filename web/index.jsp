@@ -248,14 +248,16 @@ Toggle navigation</span>
             <tr></tr>
             <tr>
               <th>rN ：<select id="rN" ></select></th>
-              <th>rM : <select  id="rM"><option value="0">0</option></select></th>
+              <th>rM : <select  id="rM"></select></th>
+              <th><input type="button" id="checkRevision" value=" 查找版本" ></th>
               <th><input type="button" id="diffOk" value=" 查看diff" ></th>
             </tr>
           </form>
+
         </div></center>
         <center>
         <div class="col-lg-3 col-md-4 col-sm-6" style="width:700px;">
-          <br/>Diff</br>
+          <br/><p id="diffCounts">Diff</p>
           <textarea name="" id="fileDiffContent" cols="70" rows="28" style="width:600px"></textarea>
         </div></center>
       </div>

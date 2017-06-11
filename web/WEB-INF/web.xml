@@ -59,4 +59,20 @@
         <servlet-name>FileServlet</servlet-name>
         <url-pattern>/servlet/FileServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>CheckRevision</servlet-name>
+        <servlet-class>servlet.CheckRevision</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckRevision</servlet-name>
+        <url-pattern>/servlet/CheckRevision</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DiffServlet</servlet-name>
+        <servlet-class>servlet.DiffServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DiffServlet</servlet-name>
+        <url-pattern>/servlet/DiffServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
