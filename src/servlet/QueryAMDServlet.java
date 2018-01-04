@@ -23,18 +23,20 @@ public class QueryAMDServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
         PrintWriter out=response.getWriter();
+       // System.out.println("初始date："+request.getParameter("date"));
         String date01=request.getParameter("date").substring(2);
         String user=request.getParameter("userName");
         System.out.println(date01+user);
         String date=null;
         if(date01.length()>4){
-            int length=date01.substring(5).length();
-            if (length==1){
+            String index=date01.substring(4);
+            if (index.equals("-")&date01.substring(5).length()>0){
                 date=date01+" ";
             }
             else {
                 date=date01;
             }}else {date=date01;}
+       // System.out.println("处理后的date："+date);
         //初始化返回值
         int javaCounts=0;int jspCounts=0;int htmlCounts=0;int xmlCounts=0;int other=0;
         ArrayList<String> commit_dateList=new ArrayList<String>();ArrayList<Integer> addLineList=new ArrayList<Integer>();ArrayList<Integer> reduceLineList=new ArrayList<Integer>();
@@ -65,6 +67,7 @@ public class QueryAMDServlet extends HttpServlet {
                            Dcounts++;
                        }
                    }
+                //   System.out.println("A:"+Acounts+"M:"+Mcounts+"D:"+Dcounts);
                    AcountsList.add(Acounts);McountsList.add(Mcounts);DcountsList.add(Dcounts);
                    rsA.close();stmtA.close();;
                }
@@ -136,9 +139,11 @@ public class QueryAMDServlet extends HttpServlet {
                             Dcounts++;
                         }
                     }
+                 //   System.out.println("A:"+Acounts+"M:"+Mcounts+"D:"+Dcounts);
                     AcountsList.add(Acounts);McountsList.add(Mcounts);DcountsList.add(Dcounts);
                     rsA.close();stmtA.close();;
                 }
+
                 rs.close();stmt.close();
 
                 String sqlB="select file_name from actions_original where changed_date like '"+date+"%'and committer='"+user+"'";
