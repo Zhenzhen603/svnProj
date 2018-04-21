@@ -6,7 +6,10 @@ import java.sql.*;
  * Created by ZhenZhen on 2018/4/19.
  */
 public class ADCodeTest {
-        //
+        //1
+    //2
+    //3
+    //4
     public static Connection conn=getDatabaseConn();
     public static void main(String[] args) throws Exception{
 
