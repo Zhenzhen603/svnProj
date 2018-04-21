@@ -11,6 +11,7 @@ public class ADCodeTest {
     //3
     //4
     //5
+    //6
     public static Connection conn=getDatabaseConn();
     public static void main(String[] args) throws Exception{
 
