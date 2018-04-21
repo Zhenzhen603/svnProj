@@ -14,6 +14,7 @@ public class T01 {
     public static void main(String[] args) throws SQLException {
        Connection conn=getDatabaseConn();
        //测试版本能否提交上去
+        //测试版本2
        int max=-1;
        int min_hankid=-1;
        int max_hankid=-1;
