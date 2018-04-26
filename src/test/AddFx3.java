@@ -1,33 +1,27 @@
-package svn.utils;
-
-import com.mysql.jdbc.*;
+//fx表，统计增加的方法数和删除的方法数
+package test;
 
 import java.sql.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 /**
- * Created by ZhenZhen on 2018/4/19.
+ * Created by ZhenZhen on 2018/4/20.
  */
-public class ADCode2 {
+public class AddFx3 {
+
+
     public static Connection conn=getDatabaseConn();
     public static void main(String[] args) throws Exception {
 
-        //10年以后
-        String year=null;
-        for(int j=10;j<18;j++){
-            year=String.valueOf(j);
-        for (int i = 2; i < 12; i++) {
+
+        for (int i = 2; i < 3; i++) {
 
             //10年之前需要手动打
 
-            String DBdate = year + "-" + i;
+            String DBdate = "18-" + i;
             int addLine = 0;
             int reduceLine = 0;
             Statement stmt01 = conn.createStatement();
-            String sql01 = "select DISTINCT revision from actions where  changed_date like ?";
+            String sql01 = "select DISTINCT revision from actions where changed_date like ?";
             PreparedStatement pstmt01 = conn.prepareStatement(sql01);
             String a = DBdate;
             pstmt01.setString(1, a + "%");
@@ -54,13 +48,21 @@ public class ADCode2 {
                             if (s2.length() < 1) {
                                 continue;
                             }
+                            //定义方法函数的格式
+                            String fx01 = "public void";
+                            String fx02 = "public String";
+                            String fx03 = "public int";
+                            String fx04 = "public boolean";
+                            String fx05 = "private void";
+
                             if (s2.substring(0, 1).equals("+")) {
-                                if (s2.length() > 1 && (s2.indexOf("/") == -1)) {
+
+                                if (s2.indexOf(fx01) != -1 || s2.indexOf(fx02) != -1 || s2.indexOf(fx03) != -1 || s2.indexOf(fx04) != -1 || s2.indexOf(fx05) != -1) {
                                     addLine++;
                                 }
 
                             } else if (s2.substring(0, 1).equals("-")) {
-                                if (s2.length() > 1 && (s2.indexOf("/") == -1)) {
+                                if (s2.indexOf(fx01) != -1 || s2.indexOf(fx02) != -1 || s2.indexOf(fx03) != -1 || s2.indexOf(fx04) != -1 || s2.indexOf(fx05) != -1) {
                                     reduceLine++;
                                 }
                             }
@@ -69,21 +71,9 @@ public class ADCode2 {
                     }
                 }
             }
-            //这是一个月的数据,统计后插入数据库
-            String sql03A = "insert into ADCode values (?,?,?,?,?)";
-            PreparedStatement psA = (PreparedStatement) conn.prepareStatement(sql03A);
-            psA.clearBatch();
-            psA.setInt(1, Integer.parseInt(year));
-            psA.setInt(2, i);
-            psA.setString(3, DBdate);
-            psA.setInt(4, addLine);
-            psA.setInt(5, reduceLine);
-            psA.addBatch();
-            psA.executeBatch();
-            psA.close();
-            System.out.println(year + "年" + i + "月完成");
+            System.out.println("add="+addLine+",reduce="+reduceLine);
+           // System.out.println(year + "年" + i + "月完成");
         }
-    }
 
 
 
@@ -91,7 +81,8 @@ public class ADCode2 {
 
 
 
-    conn.close();
+
+        conn.close();
     }
 
 
@@ -119,4 +110,18 @@ public class ADCode2 {
 
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

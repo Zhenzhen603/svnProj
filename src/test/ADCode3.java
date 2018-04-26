@@ -1,28 +1,19 @@
-package svn.utils;
-
-import com.mysql.jdbc.*;
+package test;
 
 import java.sql.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 /**
  * Created by ZhenZhen on 2018/4/19.
  */
-public class ADCode2 {
+public class ADCode3 {
     public static Connection conn=getDatabaseConn();
     public static void main(String[] args) throws Exception {
 
-        //10年以后
-        String year=null;
-        for(int j=10;j<18;j++){
-            year=String.valueOf(j);
-        for (int i = 2; i < 12; i++) {
+
+        for (int i = 2; i < 3; i++) {
 
             //10年之前需要手动打
-
+            String year="18";
             String DBdate = year + "-" + i;
             int addLine = 0;
             int reduceLine = 0;
@@ -69,21 +60,10 @@ public class ADCode2 {
                     }
                 }
             }
-            //这是一个月的数据,统计后插入数据库
-            String sql03A = "insert into ADCode values (?,?,?,?,?)";
-            PreparedStatement psA = (PreparedStatement) conn.prepareStatement(sql03A);
-            psA.clearBatch();
-            psA.setInt(1, Integer.parseInt(year));
-            psA.setInt(2, i);
-            psA.setString(3, DBdate);
-            psA.setInt(4, addLine);
-            psA.setInt(5, reduceLine);
-            psA.addBatch();
-            psA.executeBatch();
-            psA.close();
+            System.out.println("add="+addLine+",reduce="+reduceLine);
             System.out.println(year + "年" + i + "月完成");
         }
-    }
+
 
 
 
